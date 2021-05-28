@@ -1,6 +1,6 @@
 {
   "name": "@altipla/promises",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Promises utilities",
   "main": "./src/index.js",
   "type": "module",
