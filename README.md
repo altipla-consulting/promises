@@ -27,10 +27,47 @@ let { foo, bar } = await resolveAll({
 
 ### Run a Vue event handler with a promise return
 
-```js
-import { runAction } from '@altipla/promises'
+Run the action from the componente method:
 
+```vue
+<template>
+  <button @click="run"></button>
+</template>
 
-await runAction(this.$emit)
-await runAction(this.$emit, 'action', value)
+<script>
+export default {
+  name: 'my-component',
+
+  methods: {
+    async run() {
+      await runAction(this.$emit)
+
+      // If you want to customize the action name or the argument.
+      await runAction(this.$emit, 'action', value)
+
+      // Things you want to run after the promise of the other component is resolved
+      ...
+    },
+  },
+}
+</script>
 ```
+
+Then outside the component you can wait for your promise:
+
+```vue
+<template>
+  <my-component @action="$event.waitUntil(foo())"></my-component>
+</template>
+<script>
+export default {
+  methods: {
+    async foo() {
+      // Do anything you need, my-component will wait for this before continuing
+      // with the code after the runAction call.
+    },
+  },
+}
+</script>
+```
+
