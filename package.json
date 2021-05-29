@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/altipla-consulting/promises#readme",
   "files": [
-    "./src/index.js"
+    "src/index.js"
   ],
   "scripts": {
     "test": "",
