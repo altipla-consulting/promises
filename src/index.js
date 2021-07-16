@@ -24,8 +24,7 @@ export async function runAction(emit, eventName = 'action', target) {
       target,
       waitUntil: async (p) => {
         waited = true
-        await p
-        resolve()
+        resolve(await p)
       },
     })
 
