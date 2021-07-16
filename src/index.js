@@ -17,19 +17,15 @@ export function resolveAll(requests) {
 
 
 export async function runAction(emit, eventName = 'action', target) {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     let waited = false
 
     emit(eventName, {
       target,
       waitUntil: async (p) => {
         waited = true
-        try {
-          await p
-          resolve()
-        } catch (err) {
-          reject(err)
-        }
+        await p
+        resolve()
       },
     })
 
