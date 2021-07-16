@@ -25,7 +25,7 @@ export async function runAction(emit, eventName = 'action', target) {
       waitUntil: async (p) => {
         waited = true
         try {
-          await p
+          await p()
           resolve()
         } catch (err) {
           reject(err)

@@ -57,7 +57,7 @@ Then outside the component you can wait for your promise:
 
 ```vue
 <template>
-  <my-component @action="$event.waitUntil(foo())"></my-component>
+  <my-component @action="$event.waitUntil(foo)"></my-component>
 </template>
 <script>
 export default {
