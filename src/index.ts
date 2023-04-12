@@ -1,7 +1,7 @@
 
 export async function resolveAll<T, M extends Record<string, T | PromiseLike<T>>>(map: M): Promise<{ [P in keyof M]: Awaited<M[P]> }> {
-  const resolvedArray = await Promise.all(Object.values(map))
-  const resolvedMap: any = {}
+  let resolvedArray = await Promise.all(Object.values(map))
+  let resolvedMap: any = {}
 
   Object.keys(map).forEach((key, index) => {
     resolvedMap[key] = resolvedArray[index]
@@ -16,7 +16,7 @@ export async function runAction(emit: (event: string, ...args: any[]) => void, e
 
     emit(eventName, {
       target,
-      waitUntil: async (p: Promise<any>) => {
+      waitUntil: async function (p: Promise<any>) {
         waited = true
         resolve(await p)
       },

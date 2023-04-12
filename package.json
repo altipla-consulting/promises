@@ -15,7 +15,8 @@
   },
   "homepage": "https://github.com/altipla-consulting/promises#readme",
   "files": [
-    "src/index.ts"
+    "src/index.ts",
+    "dist/index.js"
   ],
   "scripts": {
     "lib": "tsc --declaration --esModuleInterop --outDir dist",
@@ -25,10 +26,7 @@
   },
   "devDependencies": {
     "@altipla/eslint-config-ts": "^0.6.0",
-    "ava": "^5.2.0",
-    "eslint": "^8.38.0"
-  },
-  "dependencies": {
+    "eslint": "^8.38.0",
     "typescript": "^5.0.4"
   }
 }
