@@ -27,19 +27,21 @@ let { foo, bar } = await resolveAll({
 
 ### Run a Vue event handler with a promise return
 
-Run the action from the componente method:
+Run the action from the component method:
 
 ```vue
 <template>
   <button @click="run"></button>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   name: 'my-component',
 
-  methods: {
-    async run() {
+  setup(props, { emit }) {
+    async function run() {
       await runAction(this.$emit)
 
       // If you want to customize the action name or the argument.
@@ -47,9 +49,13 @@ export default {
 
       // Things you want to run after the promise of the other component is resolved
       ...
-    },
-  },
-}
+    }
+
+    return {
+      run,
+    }
+  }
+})
 </script>
 ```
 
@@ -59,15 +65,21 @@ Then outside the component you can wait for your promise:
 <template>
   <my-component @action="$event.waitUntil(foo())"></my-component>
 </template>
-<script>
-export default {
-  methods: {
-    async foo() {
+
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  setup(props, { emit }) {
+    async function foo() {
       // Do anything you need, my-component will wait for this before continuing
       // with the code after the runAction call.
-    },
-  },
+    }
+
+    return {
+      foo,
+    }
+  }
 }
 </script>
 ```
-

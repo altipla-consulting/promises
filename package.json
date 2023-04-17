@@ -2,7 +2,7 @@
   "name": "@altipla/promises",
   "version": "1.1.0",
   "description": "Promises utilities",
-  "main": "./src/index.js",
+  "main": "./dist/index.js",
   "type": "module",
   "repository": {
     "type": "git",
@@ -15,17 +15,18 @@
   },
   "homepage": "https://github.com/altipla-consulting/promises#readme",
   "files": [
-    "src/index.js"
+    "src/index.ts",
+    "dist/index.js"
   ],
   "scripts": {
-    "test": "",
-    "lint": "eslint --ext .js src",
-    "fix": "eslint --fix --ext .js src"
+    "lib": "tsc --declaration --esModuleInterop --outDir dist",
+    "lint": "tsc --noEmit && eslint --ext .ts src",
+    "fix": "eslint --fix --ext .ts src",
+    "test": ""
   },
-  "dependencies": {},
   "devDependencies": {
-    "@altipla/eslint-config-vue": "^0.2.4",
-    "ava": "^3.15.0",
-    "eslint": "^7.27.0"
+    "@altipla/eslint-config-ts": "^0.6.0",
+    "eslint": "^8.38.0",
+    "typescript": "^5.0.4"
   }
 }
