@@ -16,7 +16,7 @@
   "homepage": "https://github.com/altipla-consulting/promises#readme",
   "files": [
     "src/index.ts",
-    "dist/index.js"
+    "dist"
   ],
   "scripts": {
     "lib": "tsc --declaration --esModuleInterop --outDir dist",
