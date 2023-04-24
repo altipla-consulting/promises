@@ -22,11 +22,13 @@
     "lib": "tsc --declaration --esModuleInterop --outDir dist",
     "lint": "tsc --noEmit && eslint --ext .ts src",
     "fix": "eslint --fix --ext .ts src",
-    "test": ""
+    "test": "vitest run",
+    "watch": "vitest"
   },
   "devDependencies": {
     "@altipla/eslint-config-ts": "^0.6.0",
     "eslint": "^8.38.0",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "vitest": "^0.30.1"
   }
 }
