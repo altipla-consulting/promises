@@ -10,9 +10,9 @@ export async function resolveAll<T, M extends Record<string, T | PromiseLike<T>>
   return resolvedMap
 }
 
-export async function runAction(emit: (event: 'action', ...args: any[]) => void, eventName?: 'action', target?: EventTarget): Promise<void>
-export async function runAction<T extends string>(emit: (event: T, ...args: any[]) => void, eventName: T, target?: EventTarget): Promise<void>
-export async function runAction<T extends string>(emit: (event: T, ...args: any[]) => void, eventName?: T, target?: EventTarget): Promise<void> {
+export async function runAction(emit: (event: 'action', ...args: any[]) => void, eventName?: 'action', target?: any): Promise<void>
+export async function runAction<T extends string>(emit: (event: T, ...args: any[]) => void, eventName: T, target?: any): Promise<void>
+export async function runAction<T extends string>(emit: (event: T, ...args: any[]) => void, eventName?: T, target?: any): Promise<void> {
   return new Promise(resolve => {
     let waited = false
 
