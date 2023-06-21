@@ -13,7 +13,7 @@ export async function resolveAll<T, M extends Record<string, T | PromiseLike<T>>
 export async function runAction(emit: (event: 'action', ...args: any[]) => void, eventName?: 'action', target?: any): Promise<void>
 export async function runAction<T extends string>(emit: (event: T, ...args: any[]) => void, eventName: T, target?: any): Promise<void>
 export async function runAction<T extends string>(emit: (event: T, ...args: any[]) => void, eventName?: T, target?: any): Promise<void> {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     let waited = false
 
     // Apply type erasure to merge both declarations in a single implementation.
@@ -21,7 +21,11 @@ export async function runAction<T extends string>(emit: (event: T, ...args: any[
       target,
       waitUntil: async function (p: Promise<any>) {
         waited = true
-        resolve(await p)
+        try {
+          resolve(await p)
+        } catch (error) {
+          reject(error)
+        }
       },
     })
 
